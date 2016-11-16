@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_methode-des-arbres" default="compile.module.methode-des-arbres">
+  <dirname property="module.methode-des-arbres.basedir" file="${ant.file.module_methode-des-arbres}"/>
+  
+  <property name="module.jdk.home.methode-des-arbres" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.methode-des-arbres" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.methode-des-arbres" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.methode-des-arbres" value="-encoding UTF-8 -source 8 -target 8 ${compiler.args}"/>
+  
+  <property name="methode-des-arbres.output.dir" value="${module.methode-des-arbres.basedir}/out/production/Methode-des-Arbres"/>
+  <property name="methode-des-arbres.testoutput.dir" value="${module.methode-des-arbres.basedir}/out/test/Methode-des-Arbres"/>
+  
+  <path id="methode-des-arbres.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="methode-des-arbres.module.production.classpath">
+    <path refid="${module.jdk.classpath.methode-des-arbres}"/>
+  </path>
+  
+  <path id="methode-des-arbres.runtime.production.module.classpath">
+    <pathelement location="${methode-des-arbres.output.dir}"/>
+  </path>
+  
+  <path id="methode-des-arbres.module.classpath">
+    <path refid="${module.jdk.classpath.methode-des-arbres}"/>
+    <pathelement location="${methode-des-arbres.output.dir}"/>
+    <pathelement location="${idea.home}/lib/hamcrest-core-1.3.jar"/>
+    <pathelement location="${idea.home}/lib/junit-4.12.jar"/>
+  </path>
+  
+  <path id="methode-des-arbres.runtime.module.classpath">
+    <pathelement location="${methode-des-arbres.testoutput.dir}"/>
+    <pathelement location="${methode-des-arbres.output.dir}"/>
+    <pathelement location="${idea.home}/lib/hamcrest-core-1.3.jar"/>
+    <pathelement location="${idea.home}/lib/junit-4.12.jar"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.methode-des-arbres">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.methode-des-arbres">
+    <patternset refid="excluded.from.module.methode-des-arbres"/>
+  </patternset>
+  
+  <path id="methode-des-arbres.module.sourcepath">
+    <dirset dir="${module.methode-des-arbres.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  <path id="methode-des-arbres.module.test.sourcepath">
+    <dirset dir="${module.methode-des-arbres.basedir}">
+      <include name="test"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.methode-des-arbres" depends="compile.module.methode-des-arbres.production,compile.module.methode-des-arbres.tests" description="Compile module Methode-des-Arbres"/>
+  
+  <target name="compile.module.methode-des-arbres.production" depends="register.custom.compilers" description="Compile module Methode-des-Arbres; production classes">
+    <mkdir dir="${methode-des-arbres.output.dir}"/>
+    <javac2 destdir="${methode-des-arbres.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.methode-des-arbres}/javac">
+      <compilerarg line="${compiler.args.methode-des-arbres}"/>
+      <bootclasspath refid="methode-des-arbres.module.bootclasspath"/>
+      <classpath refid="methode-des-arbres.module.production.classpath"/>
+      <src refid="methode-des-arbres.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.methode-des-arbres"/>
+    </javac2>
+    
+    <copy todir="${methode-des-arbres.output.dir}">
+      <fileset dir="${module.methode-des-arbres.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.methode-des-arbres.tests" depends="register.custom.compilers,compile.module.methode-des-arbres.production" description="compile module Methode-des-Arbres; test classes" unless="skip.tests">
+    <mkdir dir="${methode-des-arbres.testoutput.dir}"/>
+    <javac2 destdir="${methode-des-arbres.testoutput.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.methode-des-arbres}/javac">
+      <compilerarg line="${compiler.args.methode-des-arbres}"/>
+      <bootclasspath refid="methode-des-arbres.module.bootclasspath"/>
+      <classpath refid="methode-des-arbres.module.classpath"/>
+      <src refid="methode-des-arbres.module.test.sourcepath"/>
+      <patternset refid="excluded.from.compilation.methode-des-arbres"/>
+    </javac2>
+    
+    <copy todir="${methode-des-arbres.testoutput.dir}">
+      <fileset dir="${module.methode-des-arbres.basedir}/test">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="clean.module.methode-des-arbres" description="cleanup module">
+    <delete dir="${methode-des-arbres.output.dir}"/>
+    <delete dir="${methode-des-arbres.testoutput.dir}"/>
+  </target>
+</project>
