@@ -15,7 +15,7 @@ public class FormuleTest {
 
         Formule formule = new SousFormule(a, Symbole.IMPLIQUE, b, false);
 
-        assertEquals("(a -> b)", formule.toString());
+        assertEquals("(a " + Symbole.IMPLIQUE.toString() + " b)", formule.toString());
     }
 
     @Test
@@ -27,7 +27,7 @@ public class FormuleTest {
 
         Formule formule = new SousFormule(a, Symbole.IMPLIQUE, b, true);
 
-        assertEquals("-(a -> -(b))", formule.toString());
+        assertEquals("-(a " + Symbole.IMPLIQUE.toString() + " -(b))", formule.toString());
     }
 
     @Test
@@ -48,7 +48,7 @@ public class FormuleTest {
 
         Formule formule4 = new SousFormule(formule2, Symbole.ET, formule3, false);//(((a -> b) && -(c)) && -(d || ((a -> b) && -(c))))
 
-        assertEquals("(((a -> b) && -(c)) && -(d || ((a -> b) && -(c))))", formule4.toString());
+        assertEquals("(((a " + Symbole.IMPLIQUE.toString() + " b) " + Symbole.ET.toString() + " -(c)) " + Symbole.ET.toString() + " -(d " + Symbole.OU.toString() + " ((a " + Symbole.IMPLIQUE.toString() + " b) " + Symbole.ET.toString() + " -(c))))", formule4.toString());
     }
 
 
