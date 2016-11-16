@@ -1,13 +1,16 @@
 package Model;
 
-import org.junit.Test;
+import junit.framework.TestCase;
+import junit.framework.TestSuite;
 
-import static org.junit.Assert.*;
 
-public class FormuleTest {
+public class FormuleTest extends TestCase {
 
-    @Test
-    public void simpleFormule() throws Exception {
+    public static int totalAssertions = 0;
+    public static int bilanAssertions = 0;
+
+
+    public void test_simpleFormule() throws Exception {
         //given
 
         Formule a = new Lettre("a", false);
@@ -15,11 +18,12 @@ public class FormuleTest {
 
         Formule formule = new SousFormule(a, Symbole.IMPLIQUE, b, false);
 
+        totalAssertions++ ;
         assertEquals("(a " + Symbole.IMPLIQUE.toString() + " b)", formule.toString());
+        bilanAssertions++ ;
     }
 
-    @Test
-    public void simpleFormuleNeg() throws Exception {
+    public void test_simpleFormuleNeg() throws Exception {
         //given
 
         Formule a = new Lettre("a", false);
@@ -27,11 +31,12 @@ public class FormuleTest {
 
         Formule formule = new SousFormule(a, Symbole.IMPLIQUE, b, true);
 
+        totalAssertions++ ;
         assertEquals("-(a " + Symbole.IMPLIQUE.toString() + " -(b))", formule.toString());
+        bilanAssertions++ ;
     }
 
-    @Test
-    public void complicatedFormule() throws Exception {
+    public void test_complicatedFormule() throws Exception {
         //given
 
         Formule a = new Lettre("a", false);
@@ -48,8 +53,32 @@ public class FormuleTest {
 
         Formule formule4 = new SousFormule(formule2, Symbole.ET, formule3, false);//(((a -> b) && -(c)) && -(d || ((a -> b) && -(c))))
 
+        totalAssertions++ ;
         assertEquals("(((a " + Symbole.IMPLIQUE.toString() + " b) " + Symbole.ET.toString() + " -(c)) " + Symbole.ET.toString() + " -(d " + Symbole.OU.toString() + " ((a " + Symbole.IMPLIQUE.toString() + " b) " + Symbole.ET.toString() + " -(c))))", formule4.toString());
+        bilanAssertions++ ;
+
     }
+
+    /**
+     * main de la classe Test
+     *
+     * @param args arguments
+     *
+     */
+    public static void main(String[] args) {
+
+        junit.textui.TestRunner.run(new TestSuite(FormuleTest.class));
+
+        if (bilanAssertions == totalAssertions) {
+            System.out.print("Bravo ! ");
+        }
+        else  {
+            System.out.print("OUPS ! ");
+        }
+
+        System.out.println(" "+bilanAssertions+"/"+totalAssertions+" assertions verifiees");
+
+    } // fin main
 
 
 }
