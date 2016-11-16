@@ -1,6 +1,5 @@
 before_install:
   - wget http://algec.iut-blagnac.fr/~jmi/MPA/src/junit.jar
-  - hg clone -r 8.6.7 https://asciidoc.googlecode.com/hg/ asciidoc-8.6.7
 language: java
 script:
   - java -version
