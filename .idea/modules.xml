@@ -3,6 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Methode-des-Arbres.iml" filepath="$PROJECT_DIR$/Methode-des-Arbres.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/oneId.iml" filepath="$PROJECT_DIR$/.idea/modules/oneId.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/oneId_main.iml" filepath="$PROJECT_DIR$/.idea/modules/oneId_main.iml" group="oneId" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/oneId_test.iml" filepath="$PROJECT_DIR$/.idea/modules/oneId_test.iml" group="oneId" />
     </modules>
   </component>
 </project>
