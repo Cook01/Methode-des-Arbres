@@ -1,8 +1,15 @@
 package Model;
 
-/**
- * Created by Vincent on 12/11/2016.
- */
-public enum Symbole {
-    ET, OU, IMPLIQUE
+enum Symbole {
+    ET, OU, IMPLIQUE;
+
+    @Override
+    public String toString() {
+        switch(this) {
+            case ET: return "&&";
+            case OU: return "||";
+            case IMPLIQUE: return "->";
+            default: throw new IllegalArgumentException();
+        }
+    }
 }

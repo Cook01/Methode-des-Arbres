@@ -1,7 +1,33 @@
 package Model;
 
 /**
- * Created by Gkueny on 09/11/2016.
+ * <h1>Decrit une Lettre</h1>
+ *
+ * @author  gkueny
  */
-public class Lettre {
+class Lettre extends Formule
+{
+
+    private String l;
+
+    Lettre(String l, Boolean isNeg) {
+        this.isNeg = isNeg;
+        this.l = l;
+    }
+
+    /**
+     * @return String l
+     */
+    String getL() {
+        return l;
+    }
+
+    public String toString() {
+
+        if (isNeg)
+            return "-(" + l + ")";
+
+        return l;
+
+    }
 }

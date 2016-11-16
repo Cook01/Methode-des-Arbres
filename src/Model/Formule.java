@@ -1,12 +1,21 @@
 package Model;
 
 /**
- * Created by Gkueny on 09/11/2016.
+ * <h1>Decrit une Formule</h1>
+ *
+ * @author  gkueny
  */
-public class Formule {
-    private boolean isNeg;
+abstract class Formule {
 
-    public boolean getIsNeg() {
+    boolean isNeg;
+
+    /**
+     * @return Boolean isNeg
+     */
+
+    boolean getIsNeg() {
         return isNeg;
     }
+
+    public abstract String toString();
 }
