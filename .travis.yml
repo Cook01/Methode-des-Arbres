@@ -4,6 +4,5 @@ language: java
 script:
   - java -version
   - javac -version
-  - python asciidoc-8.6.7/asciidoc.py --version
-  - javac -cp ./src:./bin:./tools/junit.jar -d ./bin ./src/model/*.java ./test/model/*.java
-  - java -cp ./bin:../junit.jar:./bin/model model.FormuleTest
+  - javac -cp ./src:./bin:./tools/junit.jar -d ./bin ./src/Model/*.java ./test/Model/*.java
+  - java -cp ./bin:../junit.jar:./bin/model Model.FormuleTest
