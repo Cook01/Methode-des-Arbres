@@ -4,5 +4,5 @@ language: java
 script:
   - java -version
   - javac -version
-  - javac -cp ./src:./bin:./tools/junit.jar -d ./bin ./src/Model/*.java ./test/Model/*.java
-  - java -cp ./bin:../junit.jar:./bin/model Model.FormuleTest
+  - javac -cp ./src:./out:./tools/junit.jar -d ./bin ./src/Model/*.java ./test/Model/*.java
+  - java -cp ./out:../junit.jar:./bin/model Model.FormuleTest
