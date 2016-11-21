@@ -5,7 +5,7 @@ package Model;
  *
  * @author  gkueny
  */
-abstract class Formule {
+public abstract class Formule {
 
     boolean isNeg;
 
@@ -13,8 +13,12 @@ abstract class Formule {
      * @return Boolean isNeg
      */
 
-    boolean getIsNeg() {
+    public boolean getIsNeg() {
         return isNeg;
+    }
+
+    public void setIsNeg() {
+        this.isNeg = !this.isNeg;
     }
 
     public abstract String toString();

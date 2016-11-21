@@ -1,6 +1,6 @@
 package Model;
 
-enum Symbole {
+public enum Symbole {
     ET, OU, IMPLIQUE;
 
     @Override

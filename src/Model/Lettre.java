@@ -5,12 +5,12 @@ package Model;
  *
  * @author  gkueny
  */
-class Lettre extends Formule
+public class Lettre extends Formule
 {
 
     private String l;
 
-    Lettre(String l, Boolean isNeg) {
+    public Lettre(String l, Boolean isNeg) {
         this.isNeg = isNeg;
         this.l = l;
     }
@@ -18,7 +18,7 @@ class Lettre extends Formule
     /**
      * @return String l
      */
-    String getL() {
+    public String getL() {
         return l;
     }
 
