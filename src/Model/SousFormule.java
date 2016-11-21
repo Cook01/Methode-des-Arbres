@@ -43,7 +43,7 @@ class SousFormule extends Formule
     public String toString() {
 
         if (isNeg)
-            return "-(" + a.toString() + " " + symbole.toString() + " " + b.toString() + ")";
+            return "¬(" + a.toString() + " " + symbole.toString() + " " + b.toString() + ")";
 
         return "(" + a.toString() + " " + symbole.toString() + " " + b.toString() + ")";
 

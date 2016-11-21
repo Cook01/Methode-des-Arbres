@@ -6,8 +6,8 @@ enum Symbole {
     @Override
     public String toString() {
         switch(this) {
-            case ET: return "&&";
-            case OU: return "||";
+            case ET: return "∧";
+            case OU: return "∨";
             case IMPLIQUE: return "->";
             default: throw new IllegalArgumentException();
         }

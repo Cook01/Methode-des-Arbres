@@ -25,7 +25,7 @@ class Lettre extends Formule
     public String toString() {
 
         if (isNeg)
-            return "-(" + l + ")";
+            return "¬" + l + "";
 
         return l;
 

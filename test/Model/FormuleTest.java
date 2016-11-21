@@ -32,7 +32,7 @@ public class FormuleTest extends TestCase {
         Formule formule = new SousFormule(a, Symbole.IMPLIQUE, b, true);
 
         totalAssertions++ ;
-        assertEquals("-(a " + Symbole.IMPLIQUE.toString() + " -(b))", formule.toString());
+        assertEquals("¬(a " + Symbole.IMPLIQUE.toString() + " ¬b)", formule.toString());//-(a->(-b))
         bilanAssertions++ ;
     }
 
@@ -54,7 +54,7 @@ public class FormuleTest extends TestCase {
         Formule formule4 = new SousFormule(formule2, Symbole.ET, formule3, false);//(((a -> b) && -(c)) && -(d || ((a -> b) && -(c))))
 
         totalAssertions++ ;
-        assertEquals("(((a " + Symbole.IMPLIQUE.toString() + " b) " + Symbole.ET.toString() + " -(c)) " + Symbole.ET.toString() + " -(d " + Symbole.OU.toString() + " ((a " + Symbole.IMPLIQUE.toString() + " b) " + Symbole.ET.toString() + " -(c))))", formule4.toString());
+        assertEquals("(((a " + Symbole.IMPLIQUE.toString() + " b) " + Symbole.ET.toString() + " ¬c) " + Symbole.ET.toString() + " ¬(d " + Symbole.OU.toString() + " ((a " + Symbole.IMPLIQUE.toString() + " b) " + Symbole.ET.toString() + " ¬c)))", formule4.toString());
         bilanAssertions++ ;
 
     }
