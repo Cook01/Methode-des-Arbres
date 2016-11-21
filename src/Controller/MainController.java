@@ -12,6 +12,8 @@ class MainController
 
         SousFormule formule = new SousFormule(a, Symbole.IMPLIQUE, b, false);
 
+        System.out.println(formule);
+
 
         Decomposition decomposeFormule = new Decomposition(formule);
 
@@ -24,7 +26,10 @@ class MainController
         }
 
         if (decomposeFormule.getAonNeg()) {
-        	
+        	System.out.println(formule.getFormuleA());
+        	System.out.println(formule.getFormuleB());
+        } else {
+        	System.out.println(formule.getFormuleA() + "    	    	" + formule.getFormuleB());
         }
 
 	}
