@@ -7,3 +7,4 @@ script:
   - mkdir out
   - javac -cp ./src:./out:./junit.jar -d ./out ./src/Model/*.java ./test/Model/*.java
   - java -cp ./out:./junit.jar:./out/Model Model.FormuleTest
+  - java -cp ./out:./junit.jar:./out/Model Model.DecompositionTest
