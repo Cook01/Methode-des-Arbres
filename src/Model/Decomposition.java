@@ -7,9 +7,9 @@ package Model;
  */
 public class Decomposition {
 
-    private boolean AisNeg;
-    private boolean BisNeg;
-    private boolean AonB;
+    private boolean aIsNeg;
+    private boolean bIsNeg;
+    private boolean aOnB;
 
     public Decomposition(SousFormule formule){
 
@@ -19,15 +19,15 @@ public class Decomposition {
 
                 if(!formule.getIsNeg()){
 
-                    AisNeg  = false;
-                    BisNeg  = false;
-                    AonB    = true;
+                    aIsNeg  = false;
+                    bIsNeg  = false;
+                    aOnB    = true;
 
                 } else {
 
-                    AisNeg  = true;
-                    BisNeg  = true;
-                    AonB    = false;
+                    aIsNeg  = true;
+                    bIsNeg  = true;
+                    aOnB    = false;
                 }
 
                 break;
@@ -37,15 +37,15 @@ public class Decomposition {
 
                 if(!formule.getIsNeg()){
 
-                    AisNeg  = false;
-                    BisNeg  = false;
-                    AonB    = false;
+                    aIsNeg  = false;
+                    bIsNeg  = false;
+                    aOnB    = false;
 
                 } else {
 
-                    AisNeg  = true;
-                    BisNeg  = true;
-                    AonB    = true;
+                    aIsNeg  = true;
+                    bIsNeg  = true;
+                    aOnB    = true;
 
                 }
 
@@ -56,15 +56,15 @@ public class Decomposition {
 
                 if(!formule.getIsNeg()){
 
-                    AisNeg  = true;
-                    BisNeg  = false;
-                    AonB    = false;
+                    aIsNeg  = true;
+                    bIsNeg  = false;
+                    aOnB    = false;
 
                 } else {
 
-                    AisNeg  = false;
-                    BisNeg  = true;
-                    AonB    = true;
+                    aIsNeg  = false;
+                    bIsNeg  = true;
+                    aOnB    = true;
 
                 }
 
