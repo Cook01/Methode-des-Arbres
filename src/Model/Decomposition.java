@@ -5,19 +5,20 @@ package Model;
  *
  * @author  Vincent THOMAS
  */
-public class Decomposition {
+public class Decomposition 
+{
 
     private boolean AisNeg;
     private boolean BisNeg;
     private boolean AonB;
 
-    public Decomposition(SousFormule formule){
+    public Decomposition(SousFormule formule) {
 
         switch (formule.getSymbole()){
 
             case ET :
 
-                if(!formule.getIsNeg()){
+                if(!formule.getIsNeg()) {
 
                     AisNeg  = false;
                     BisNeg  = false;
@@ -35,7 +36,7 @@ public class Decomposition {
 
             case OU :
 
-                if(!formule.getIsNeg()){
+                if(!formule.getIsNeg()) {
 
                     AisNeg  = false;
                     BisNeg  = false;
@@ -54,7 +55,7 @@ public class Decomposition {
 
             case IMPLIQUE :
 
-                if(!formule.getIsNeg()){
+                if(!formule.getIsNeg()) {
 
                     AisNeg  = true;
                     BisNeg  = false;
@@ -70,5 +71,20 @@ public class Decomposition {
 
                 break;
         }
+    }
+
+    public boolean getAisNeg()
+    {
+        return this.AisNeg;
+    }
+
+    public boolean getBisNeg()
+    {
+        return this.AisNeg;
+    }
+
+    public boolean getAonNeg()
+    {
+        return this.AonB;
     }
 }

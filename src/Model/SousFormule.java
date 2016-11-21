@@ -5,14 +5,14 @@ package Model;
  *
  * @author  gkueny
  */
-class SousFormule extends Formule
+public class SousFormule extends Formule
 {
 
     private Symbole symbole;
     private Formule a;
     private Formule b;
 
-    SousFormule(Formule a, Symbole symbole, Formule b, Boolean isNeg) {
+    public SousFormule(Formule a, Symbole symbole, Formule b, Boolean isNeg) {
         this.isNeg = isNeg;
         this.symbole = symbole;
         this.a = a;
@@ -22,23 +22,24 @@ class SousFormule extends Formule
     /**
      * @return Symbole symbole
      */
-    Symbole getSymbole() {
+    public Symbole getSymbole() {
         return symbole;
     }
 
     /**
      * @return Formule a
      */
-    Formule getFormuleA() {
+    public Formule getFormuleA() {
         return a;
     }
 
     /**
      * @return Formule b
      */
-    Formule getFormuleB() {
+    public Formule getFormuleB() {
         return b;
     }
+
 
     public String toString() {
 
