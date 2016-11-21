@@ -80,7 +80,7 @@ public class Decomposition
 
     public boolean getBisNeg()
     {
-        return this.AisNeg;
+        return this.BisNeg;
     }
 
     public boolean getAonNeg()
