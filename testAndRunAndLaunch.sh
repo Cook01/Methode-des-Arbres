@@ -5,6 +5,7 @@ javac -cp ./src:./out:./Junit/junit.jar -d ./out ./src/Model/*.java ./src/Contro
 
 #executez test
 java -cp ./out:./Junit/junit.jar:./out/ Model.FormuleTest
+java -cp ./out:./Junit/junit.jar:./out/ Model.DecompositionTest
 
 #go to out folder
 cd out

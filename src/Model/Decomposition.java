@@ -75,16 +75,16 @@ public class Decomposition
 
     public boolean getAisNeg()
     {
-        return this.AisNeg;
+        return this.aIsNeg;
     }
 
     public boolean getBisNeg()
     {
-        return this.AisNeg;
+        return this.bIsNeg;
     }
 
     public boolean getAonNeg()
     {
-        return this.AonB;
+        return this.aOnB;
     }
 }
