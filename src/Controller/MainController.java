@@ -28,6 +28,41 @@ class MainController
 		return formulesDeBases.get(choice-1);
 	}
 
+	private static void game(SousFormule formuleToDevelop)
+	{
+
+		ArrayList<Formule> root = new ArrayList<Formule>();
+		root.add(formuleToDevelop);
+
+		Tree<ArrayList<Formule>> myTree = new Tree<ArrayList<Formule>>(root);
+
+		Decomposition decompose 		= new Decomposition(formuleToDevelop);
+
+		Formule a = formuleToDevelop.getFormuleA();
+		Formule b = formuleToDevelop.getFormuleB();
+
+		if (decompose.getAisNeg()) {
+			a.setIsNeg();
+		}
+
+		if (decompose.getBisNeg()) {
+			b.setIsNeg();
+		}
+
+		if (decompose.getAonB()) {
+
+			ArrayList<Formule> node = new ArrayList<Formule>();
+
+			node.add(a);
+			node.add(b);
+
+			Tree<ArrayList<Formule>> newTree = new Tree<ArrayList<Formule>>(node);
+		}
+
+
+
+	}
+
 	public static void main(String[] args)
 	{
 
@@ -60,6 +95,8 @@ class MainController
 
 		
 		Formule pickFormule = choiceAFormule(formuleDeBase);
+
+		game((SousFormule)pickFormule);
 
 	}
 }

@@ -83,7 +83,7 @@ public class Decomposition
         return this.bIsNeg;
     }
 
-    public boolean getAonNeg()
+    public boolean getAonB()
     {
         return this.aOnB;
     }
