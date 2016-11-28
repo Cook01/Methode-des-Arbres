@@ -3,8 +3,20 @@ package Model;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
 public class Tree<T extends List> 
 {
+
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_BLACK = "\u001B[30m";
+    public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_GREEN = "\u001B[32m";
+    public static final String ANSI_YELLOW = "\u001B[33m";
+    public static final String ANSI_BLUE = "\u001B[34m";
+    public static final String ANSI_PURPLE = "\u001B[35m";
+    public static final String ANSI_CYAN = "\u001B[36m";
+    public static final String ANSI_WHITE = "\u001B[37m";
 
     private Node<T> root;
 
@@ -38,11 +50,20 @@ public class Tree<T extends List>
         }
 
         private void print(String prefix, boolean isTail) {
+
+            String color = "";
+
             for(int i = 0; i < data.size(); i++){
+                
+                if (data.get(i) instanceof Lettre)
+                    color = ANSI_GREEN;
+                else
+                    color = ANSI_CYAN;
+
                 if(i == 0){
-                    System.out.println(prefix + (isTail ? "└── " : "├── ") + data.get(i).toString());
+                    System.out.println(prefix + (isTail ? "└── " : "├── ") +  color + data.get(i).toString() + ANSI_RESET);
                 } else {
-                    System.out.println(prefix + (isTail ? "    " : "│   ") + data.get(i).toString());
+                    System.out.println(prefix + (isTail ? "    " : "│   ") + color + data.get(i).toString() + ANSI_RESET);
                 }
             } 
 
