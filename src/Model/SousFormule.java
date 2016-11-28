@@ -40,6 +40,10 @@ public class SousFormule extends Formule
         return b;
     }
 
+    public Formule copy(){
+        return new SousFormule(a.copy(), symbole, b.copy(), isNeg);
+    }
+
 
     public String toString() {
 

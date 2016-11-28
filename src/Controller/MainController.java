@@ -46,7 +46,7 @@ class MainController
 		SousFormule formule1 = new SousFormule(a, Symbole.IMPLIQUE, b, false);//(a -> b)
 		SousFormule formule2 = new SousFormule(formule1, Symbole.ET, cNeg, false);//((a -> b) && -(c))
 		SousFormule formule3 = new SousFormule(d, Symbole.OU, formule2, true);//-(d || ((a -> b) && -(c)))	
-		SousFormule formule4 = new SousFormule(formule2, Symbole.ET, formule3, false);//(((a -> b) && -(c)) && -(d || ((a -> b) && -(c))))
+		SousFormule formule4 = new SousFormule(formule2, Symbole.OU, formule3, false);//(((a -> b) && -(c)) && -(d || ((a -> b) && -(c))))
 		
 
 		formuleDeBase.add(formule1);
@@ -58,10 +58,7 @@ class MainController
 
 		//Debut du jeu (A FAIRE => Se deplacer uniquement dans les feuilles de l'arbre pour effectuer les operations)
 		while(true){
-			//Affichage de l'arbre entier (A FAIRE => Afficher TOUT l'arbre)
-			for (int i = 0; i < formuleDeBase.size(); i++) {
-				System.out.println((i+1) + " : 	" + formuleDeBase.get(i).toString());
-			}
+			decompTree.print();
 
 			//Selection de la formule a Developper (A FAIRE => Selection parmis TOUTES les formules, même des autres feuilles + Interdir selection de lettres)
 			SousFormule pickFormule = choiceAFormule(formuleDeBase);
@@ -69,9 +66,9 @@ class MainController
 			//Developpement de la formule
 			Decomposition decompose = new Decomposition(pickFormule);
 
-			//A FAIRE => copie au lieu de get() (la formule est modifiée dans toutes ses occurences sinon)
-			Formule formA = pickFormule.getFormuleA();
-			Formule formB = pickFormule.getFormuleB();
+			//DONE => copie au lieu de get() (la formule est modifiée dans toutes ses occurences sinon)
+			Formule formA = pickFormule.getFormuleA().copy();
+			Formule formB = pickFormule.getFormuleB().copy();
 
 			//Interpretation du developpement
 			//A est negatif ?
@@ -92,8 +89,13 @@ class MainController
 				node.add(formA);
 				node.add(formB);
 
+				for(int i = 0; i < formuleDeBase.size(); i++){
+					if(formuleDeBase.get(i) != pickFormule){
+						node.add(formuleDeBase.get(i));
+					}
+				}
+
 				decompTree.addChildren(new Tree<ArrayList<Formule>>(node));
-				//A FAIRE => Ajouter les autres formules
 
 			} else { //A et B sont sur deux branches differentes
 				ArrayList<Formule> nodeA = new ArrayList<Formule>();
@@ -102,9 +104,15 @@ class MainController
 				nodeA.add(formA);
 				nodeB.add(formB);
 
+				for(int i = 0; i < formuleDeBase.size(); i++){
+					if(formuleDeBase.get(i) != pickFormule){
+						nodeA.add(formuleDeBase.get(i));
+						nodeB.add(formuleDeBase.get(i));
+					}
+				}
+
 				decompTree.addChildren(new Tree<ArrayList<Formule>>(nodeA));
 				decompTree.addChildren(new Tree<ArrayList<Formule>>(nodeB));
-				//A FAIRE => Ajouter les autres formules
 			}
 		}
 	}

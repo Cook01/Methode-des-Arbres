@@ -21,5 +21,7 @@ public abstract class Formule {
         this.isNeg = !this.isNeg;
     }
 
+    public abstract Formule copy();
+
     public abstract String toString();
 }

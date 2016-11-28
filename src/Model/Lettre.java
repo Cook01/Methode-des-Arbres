@@ -22,6 +22,10 @@ public class Lettre extends Formule
         return l;
     }
 
+    public Formule copy(){
+        return new Lettre(l, isNeg);
+    }
+
     public String toString() {
 
         if (isNeg)
