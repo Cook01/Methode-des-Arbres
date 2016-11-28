@@ -10,7 +10,7 @@ class MainController
 
 	static Scanner sc 	= new Scanner(System.in);
 
-	private static Formule choiceAFormule(ArrayList<Formule> formulesDeBases)
+	private static SousFormule choiceAFormule(ArrayList<Formule> formulesDeBases)
 	{
 
 		int choice = -1;
@@ -25,42 +25,7 @@ class MainController
 		
 		System.out.println("Vous avez choisi la formule : " + formulesDeBases.get(choice-1));
 	
-		return formulesDeBases.get(choice-1);
-	}
-
-	private static void game(SousFormule formuleToDevelop)
-	{
-
-		ArrayList<Formule> root = new ArrayList<Formule>();
-		root.add(formuleToDevelop);
-
-		Tree<ArrayList<Formule>> myTree = new Tree<ArrayList<Formule>>(root);
-
-		Decomposition decompose 		= new Decomposition(formuleToDevelop);
-
-		Formule a = formuleToDevelop.getFormuleA();
-		Formule b = formuleToDevelop.getFormuleB();
-
-		if (decompose.getAisNeg()) {
-			a.setIsNeg();
-		}
-
-		if (decompose.getBisNeg()) {
-			b.setIsNeg();
-		}
-
-		if (decompose.getAonB()) {
-
-			ArrayList<Formule> node = new ArrayList<Formule>();
-
-			node.add(a);
-			node.add(b);
-
-			Tree<ArrayList<Formule>> newTree = new Tree<ArrayList<Formule>>(node);
-		}
-
-
-
+		return (SousFormule)formulesDeBases.get(choice-1);
 	}
 
 	public static void main(String[] args)
@@ -78,10 +43,10 @@ class MainController
 		Lettre cNeg = new Lettre("c", true);
 
 
-		SousFormule formule1 		= new SousFormule(a, Symbole.IMPLIQUE, b, false);//(a -> b)
-		SousFormule formule2 		= new SousFormule(formule1, Symbole.ET, cNeg, false);//((a -> b) && -(c))
-		SousFormule formule3 		= new SousFormule(d, Symbole.OU, formule2, true);//-(d || ((a -> b) && -(c)))	
-		SousFormule formule4 		= new SousFormule(formule2, Symbole.ET, formule3, false);//(((a -> b) && -(c)) && -(d || ((a -> b) && -(c))))
+		SousFormule formule1 = new SousFormule(a, Symbole.IMPLIQUE, b, false);//(a -> b)
+		SousFormule formule2 = new SousFormule(formule1, Symbole.ET, cNeg, false);//((a -> b) && -(c))
+		SousFormule formule3 = new SousFormule(d, Symbole.OU, formule2, true);//-(d || ((a -> b) && -(c)))	
+		SousFormule formule4 = new SousFormule(formule2, Symbole.ET, formule3, false);//(((a -> b) && -(c)) && -(d || ((a -> b) && -(c))))
 		
 
 		formuleDeBase.add(formule1);
@@ -89,14 +54,58 @@ class MainController
 		formuleDeBase.add(formule3);
 		formuleDeBase.add(formule4);
 
-		for (int i = 0; i < formuleDeBase.size(); i++) {
-			System.out.println( (i+1) + " : 	" + formuleDeBase.get(i).toString());
+		Tree decompTree = new Tree<ArrayList<Formule>>(formuleDeBase);
+
+		//Debut du jeu (A FAIRE => Se deplacer uniquement dans les feuilles de l'arbre pour effectuer les operations)
+		while(true){
+			//Affichage de l'arbre entier (A FAIRE => Afficher TOUT l'arbre)
+			for (int i = 0; i < formuleDeBase.size(); i++) {
+				System.out.println((i+1) + " : 	" + formuleDeBase.get(i).toString());
+			}
+
+			//Selection de la formule a Developper (A FAIRE => Selection parmis TOUTES les formules, même des autres feuilles + Interdir selection de lettres)
+			SousFormule pickFormule = choiceAFormule(formuleDeBase);
+
+			//Developpement de la formule
+			Decomposition decompose = new Decomposition(pickFormule);
+
+			//A FAIRE => copie au lieu de get() (la formule est modifiée dans toutes ses occurences sinon)
+			Formule formA = pickFormule.getFormuleA();
+			Formule formB = pickFormule.getFormuleB();
+
+			//Interpretation du developpement
+			//A est negatif ?
+			if (decompose.getAisNeg()) {
+				formA.setIsNeg();
+			}
+
+			//B est négatif ? 
+			if (decompose.getBisNeg()) {
+				formB.setIsNeg();
+			}
+
+			//A et B sont sur la même branche ?
+			if (decompose.getAonB()) {
+
+				ArrayList<Formule> node = new ArrayList<Formule>();
+
+				node.add(formA);
+				node.add(formB);
+
+				decompTree.addChildren(new Tree<ArrayList<Formule>>(node));
+				//A FAIRE => Ajouter les autres formules
+
+			} else { //A et B sont sur deux branches differentes
+				ArrayList<Formule> nodeA = new ArrayList<Formule>();
+				ArrayList<Formule> nodeB = new ArrayList<Formule>();
+
+				nodeA.add(formA);
+				nodeB.add(formB);
+
+				decompTree.addChildren(new Tree<ArrayList<Formule>>(nodeA));
+				decompTree.addChildren(new Tree<ArrayList<Formule>>(nodeB));
+				//A FAIRE => Ajouter les autres formules
+			}
 		}
-
-		
-		Formule pickFormule = choiceAFormule(formuleDeBase);
-
-		game((SousFormule)pickFormule);
-
 	}
 }

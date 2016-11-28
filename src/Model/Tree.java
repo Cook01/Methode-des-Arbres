@@ -8,27 +8,28 @@ public class Tree<T>
 
     private Node<T> root;
 
-    public Tree(T rootData) 
-    {
+    public Tree(T rootData) {
         root            = new Node<T>();
         root.data       = rootData;
         root.children   = new ArrayList<Node<T>>();
     }
 
-    public Node<T> getRoot()
-    {
+    public Node<T> getRoot(){
         return root;
     }
 
-    public void addChildren(Tree children) 
-    {
-        root.children.add(children.getRoot());
+    public void addChildren(Tree children){
+        root.addChildren(children.root);
     }
 
-    public static class Node<T> 
-    {
+    public static class Node<T>{
         private T data;
         private Node<T> parent;
         private List<Node<T>> children;
+
+        public void addChildren(Node children){
+            children.parent = this;
+            this.children.add(children);
+        }
     }
 }
