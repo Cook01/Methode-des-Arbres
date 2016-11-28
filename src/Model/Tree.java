@@ -53,15 +53,17 @@ public class Tree<T extends List>
 
             String color = "";
 
-            for(int i = 0; i < data.size(); i++){
+            for(int i = 0; i < data.size() + 1; i++){
                 
-                if (data.get(i) instanceof Lettre)
+                if ( i < data.size() && data.get(i) instanceof Lettre)
                     color = ANSI_GREEN;
                 else
                     color = ANSI_CYAN;
 
                 if(i == 0){
                     System.out.println(prefix + (isTail ? "└── " : "├── ") +  color + data.get(i).toString() + ANSI_RESET);
+                } else if( i == data.size()) {
+                    System.out.println(prefix + (isTail ? "    " : "│   "));
                 } else {
                     System.out.println(prefix + (isTail ? "    " : "│   ") + color + data.get(i).toString() + ANSI_RESET);
                 }
